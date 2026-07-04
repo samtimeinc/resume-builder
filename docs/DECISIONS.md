@@ -41,6 +41,12 @@ Format per entry:
 
 - **Decision:** Tailored resumes are shown as an **editable in-app preview** (v1). Static PDF/DOCX export deferred.
 
+## 2026-07-04 — Agent hand-off guide added
+
+- **Decision:** Add `docs/AGENT_GUIDE.md` as the consolidated onboarding briefing for any agent picking up the project on a fresh machine.
+- **Rationale:** The agent's internal `/memories/repo/*` scratchpad is workspace-local and does NOT travel with the repo. Without a committed equivalent, a fresh-clone agent loses project identity, Next 16 gotchas, and current-phase state. `AGENT_GUIDE.md` mirrors that memory in a version-controlled file. `AGENTS.md` now points at it as the "read this first" entry point.
+- **Maintained alongside:** `AGENTS.md` (rules), `ARCHITECTURE.md` (design), `DECISIONS.md` (history). `AGENT_GUIDE.md` is the "where am I / what's next" briefing — update it whenever phase state changes or significant new learnings emerge.
+
 ## 2026-07-04 — Phase 0 complete
 
 - **Outcome:** Next.js 16.2.10 + React 19.2.4 + Tailwind v4 project scaffolded. Build + lint clean. Dev server boots (`npm run dev`).

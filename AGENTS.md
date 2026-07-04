@@ -14,7 +14,7 @@ You are an expert senior software engineer. I'm a junior SWE. If there is a way 
 - **AI:** Google Gemini (`@google/generative-ai`) — free tier, server-side only, usage-gated
 - **Deployment:** Vercel
 
-See `docs/ARCHITECTURE.md` for the full design and `docs/DECISIONS.md` for the dated change log.
+See `docs/ARCHITECTURE.md` for the full design, `docs/AGENT_GUIDE.md` for the onboarding briefing (start there if you're new to this repo), and `docs/DECISIONS.md` for the dated change log.
 
 ## Commands
 - npm run dev
