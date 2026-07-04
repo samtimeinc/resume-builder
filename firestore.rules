@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Resume Builder — Firestore Security Rules
+//
+// All user data lives under users/{uid}/... so ownership can be checked with
+// `request.auth.uid == uid`. Server code uses the Admin SDK which BYPASSES
+// these rules (Admin is trusted). These rules therefore protect data when
+// accessed directly from the client SDK (e.g. anonymous reads, attacks).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Per-user documents: master resume, jobs, tailored resumes.
+    // Recursive match covers users/{uid}/{collection}/{docId} and deeper.
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // The user's own profile document (top-level, not nested).
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      // Writes to profile / aiUsage go through the server (Admin SDK).
+      allow write: if false;
+    }
+
+    // Deny everything else by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
